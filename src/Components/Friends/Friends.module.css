@@ -1,0 +1,24 @@
+.section {
+    padding: 5px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.friendElement {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    align-items: center;
+}
+
+.friendElement img {
+    border-radius: 20px;
+    width: 40px;
+}

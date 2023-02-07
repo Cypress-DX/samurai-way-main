@@ -1,0 +1,22 @@
+.nav {
+    grid-area: n;
+    background-color: chocolate;
+    padding: 10px;
+}
+
+/*.active {*/
+/*    background-color: red;*/
+/*}*/
+
+.item a {
+    color: white;
+    text-decoration: none;
+}
+
+.item a.active {
+    color: black;
+}
+
+.friends {
+  display: flex;
+}

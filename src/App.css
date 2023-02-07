@@ -1,7 +1,7 @@
 .appWrapper {
     display: grid;
     grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 200px 1fr;
     grid-template-areas:
     "h h"
     "n c";
@@ -9,11 +9,10 @@
     margin: 0 auto;
 }
 
-
-
-
-
-
+.appWrapperContent {
+    grid-area: c;
+    background-color: antiquewhite;
+}
 
 .App {
     text-align: center;
