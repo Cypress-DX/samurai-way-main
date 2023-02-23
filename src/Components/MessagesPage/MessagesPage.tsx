@@ -2,10 +2,12 @@ import c from "./MessagesPage.module.css"
 import {DialogItem} from "./DialogItem/DialogItem";
 import {DialogMessage} from "./DialogMessage/DialogMessage";
 import {MessagesPageType} from "../../Redux/state";
-import React from "react";
+import React, {ChangeEvent, ChangeEventHandler} from "react";
 
 export type MessagesPagesPropsType = {
     messagesPage: MessagesPageType
+    addMessage: () => void
+    updateMessageText: (newMessageText: string) => void
 }
 
 export const MessagesPage = (props: MessagesPagesPropsType) => {
@@ -14,8 +16,14 @@ export const MessagesPage = (props: MessagesPagesPropsType) => {
 
     let newMessageElement = React.createRef<HTMLTextAreaElement>();
     let addNewMessage = () => {
-        let message = newMessageElement.current?.value
-        alert(message)
+        // let message = newMessageElement.current?.value
+        // alert(message)
+        if (props.messagesPage.newMessageText.trim()) {
+            props.addMessage()
+        }
+    }
+    let updateMessageHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateMessageText(e.currentTarget.value)
     }
 
     return (
@@ -27,7 +35,7 @@ export const MessagesPage = (props: MessagesPagesPropsType) => {
                 {messageElements}
             </div>
             <div>
-                <textarea ref={newMessageElement}></textarea>
+                <textarea ref={newMessageElement} value={props.messagesPage.newMessageText} onChange={updateMessageHandler}/>
                 <button onClick={addNewMessage}>send</button>
             </div>
         </div>

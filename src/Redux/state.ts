@@ -29,6 +29,7 @@ export type ProfilePageType = {
 export type MessagesPageType = {
     dialogData: Array<DialogItemType>
     messageData: Array<MessageItemType>
+    newMessageText: string
 }
 
 export type FriendsPageType = {
@@ -74,7 +75,8 @@ export let state: RootStateType = {
         messageData: [
             {id: 1, message: 'Hola'},
             {id: 2, message: 'Hello'},
-            {id: 3, message: 'Ca va?'}]
+            {id: 3, message: 'Ca va?'}],
+        newMessageText: ''
     },
     sidebar: {
         navigation: [
@@ -90,7 +92,7 @@ export let state: RootStateType = {
             {id:3, friendName: "Nick"},
             {id:4, friendName: "Bob"},
         ]
-    }
+    },
 }
 
 export let addPost = () => {
@@ -104,7 +106,22 @@ export let addPost = () => {
     rerenderEntireTree(state)
 }
 
+export let addMessage = () => {
+    let newMessage = {
+        id: 543,
+        message: state.messagesPage.newMessageText
+    }
+    state.messagesPage.messageData.push(newMessage)
+    state.messagesPage.newMessageText = ''
+    rerenderEntireTree(state)
+}
+
 export let updatePostText = (newPostText: string) => {
     state.profilePage.newPostText = newPostText
+    rerenderEntireTree(state)
+}
+
+export let updateMessageText = (newMessageText: string) => {
+    state.messagesPage.newMessageText = newMessageText
     rerenderEntireTree(state)
 }

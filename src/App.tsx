@@ -8,13 +8,15 @@ import {BrowserRouter, Route, Router} from "react-router-dom";
 import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/News";
 import {Settings} from "./Components/Settings/Settings";
-import {RootStateType} from "./Redux/state";
+import {addMessage, RootStateType} from "./Redux/state";
 
 
 export type AppPropsType = {
     state: RootStateType
     addPost: () => void
-    updatePost: (newPostText:string) => void
+    updatePost: (newPostText: string) => void
+    addMessage: () => void
+    updateMessageText: (newMessageText: string) => void
 }
 
 export type PostPropsType = {
@@ -44,7 +46,11 @@ function App(props: AppPropsType) {
                         />}/>
                     <Route
                         path='/messagesPage'
-                        render={() => <MessagesPage messagesPage={props.state.messagesPage}/>}/>
+                        render={() => <MessagesPage
+                            messagesPage={props.state.messagesPage}
+                            addMessage={props.addMessage}
+                            updateMessageText={props.updateMessageText}
+                        />}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
