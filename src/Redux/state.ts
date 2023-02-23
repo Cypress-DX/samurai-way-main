@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export type MessageItemType = {
     id: number
     message: string
@@ -21,6 +23,7 @@ export type PostItemType = {
 
 export type ProfilePageType = {
     postData: Array<PostItemType>
+    newPostText: string
 }
 
 export type MessagesPageType = {
@@ -59,7 +62,8 @@ export let state: RootStateType = {
         postData: [
             {id: 1, message: 'How are you doing?', likeCount: 0},
             {id: 2, message: 'Muy bien', likeCount: 3},
-            {id: 3, message: 'Good to hear', likeCount: 1}]
+            {id: 3, message: 'Good to hear', likeCount: 1}],
+        newPostText: 'It-kamasutra.com'
     },
     messagesPage: {
         dialogData: [
@@ -87,4 +91,20 @@ export let state: RootStateType = {
             {id:4, friendName: "Bob"},
         ]
     }
+}
+
+export let addPost = () => {
+    let newPostItem: PostItemType = {
+        id:5,
+        message: state.profilePage.newPostText,
+        likeCount: 0
+    }
+    state.profilePage.postData.push(newPostItem)
+    state.profilePage.newPostText = ''
+    rerenderEntireTree(state)
+}
+
+export let updatePostText = (newPostText: string) => {
+    state.profilePage.newPostText = newPostText
+    rerenderEntireTree(state)
 }

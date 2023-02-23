@@ -13,6 +13,8 @@ import {RootStateType} from "./Redux/state";
 
 export type AppPropsType = {
     state: RootStateType
+    addPost: () => void
+    updatePost: (newPostText:string) => void
 }
 
 export type PostPropsType = {
@@ -29,19 +31,27 @@ function App(props: AppPropsType) {
             <div className="appWrapper">
                 <Header/>
                 <Sidebar
-                navigation={props.state.sidebar.navigation}
-                friends={props.state.sidebar.friends}
+                    navigation={props.state.sidebar.navigation}
+                    friends={props.state.sidebar.friends}
                 />
                 <div className={"appWrapperContent"}>
-                    <Route path='/profilePage' render={()=> <ProfilePage profilePage={props.state.profilePage}/>}/>
-                    <Route path='/messagesPage' render={() => <MessagesPage messagesPage={props.state.messagesPage}/>}/>
+                    <Route
+                        path='/profilePage'
+                        render={() => <ProfilePage
+                            profilePage={props.state.profilePage}
+                            addPost={props.addPost}
+                            updatePost={props.updatePost}
+                        />}/>
+                    <Route
+                        path='/messagesPage'
+                        render={() => <MessagesPage messagesPage={props.state.messagesPage}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
                 </div>
                 {/*<ProfilePage/>*/}
             </div>
-            </BrowserRouter>
+        </BrowserRouter>
     );
 }
 
